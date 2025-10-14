@@ -1,3 +1,5 @@
+import 'package:book_app/data/entity/book/entity.dart';
+import 'package:book_app/provider/book/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -5,17 +7,37 @@ part 'home_view_model.g.dart';
 
 @riverpod
 class HomeViewModel extends _$HomeViewModel {
-  static const _imageUrl = 'https://placehold.jp/229x291.png';
   static const double decisionDx = 120;
   static const double maxAngleDeg = 12;
 
   @override
   HomeState build() {
     return HomeState(
-      deck: List.filled(10, _imageUrl),
+      deck: [],
       index: 0,
       drag: Offset.zero,
+      isLoading: false,
+      error: null,
     );
+  }
+
+  Future<void> fetchBooks(String query) async {
+    state = state.copyWith(isLoading: true, error: null);
+
+    try {
+      final bookApi = ref.read(booksProvider);
+      final books = await bookApi.getBooks(query: query);
+
+      state = state.copyWith(
+        deck: books,
+        isLoading: false,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        error: e.toString(),
+      );
+    }
   }
 
   void onPanUpdate(DragUpdateDetails details) {
@@ -141,21 +163,29 @@ class HomeState {
     required this.deck,
     required this.index,
     required this.drag,
+    required this.isLoading,
+    required this.error,
   });
 
-  final List<String> deck;
+  final List<BookEntity> deck;
   final int index;
   final Offset drag;
+  final bool isLoading;
+  final String? error;
 
   HomeState copyWith({
-    List<String>? deck,
+    List<BookEntity>? deck,
     int? index,
     Offset? drag,
+    bool? isLoading,
+    String? error,
   }) {
     return HomeState(
       deck: deck ?? this.deck,
       index: index ?? this.index,
       drag: drag ?? this.drag,
+      isLoading: isLoading ?? this.isLoading,
+      error: error ?? this.error,
     );
   }
 }

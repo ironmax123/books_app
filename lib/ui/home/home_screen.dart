@@ -1,4 +1,4 @@
-import 'package:book_app/provider/book/provider.dart';
+import 'package:book_app/data/entity/book/entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -19,6 +19,68 @@ class HomeScreen extends HookConsumerWidget {
     final controller = useAnimationController(
       duration: const Duration(milliseconds: 200),
     );
+
+    // 初回ロード
+    useEffect(() {
+      Future(() => viewModel.fetchBooks('大阪万博'));
+      return null;
+    }, []);
+
+    // Show loading indicator
+    if (state.isLoading) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: cs.secondary,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.bookmark_outline),
+              tooltip: 'Saved',
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    // Show error message
+    if (state.error != null) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: cs.secondary,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.bookmark_outline),
+              tooltip: 'Saved',
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: Center(
+          child: Text('Error: ${state.error}'),
+        ),
+      );
+    }
+
+    if (state.deck.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: cs.secondary,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.bookmark_outline),
+              tooltip: 'Saved',
+              onPressed: () {},
+            ),
+          ],
+        ),
+        body: const Center(
+          child: Text('No books found'),
+        ),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -44,7 +106,7 @@ class HomeScreen extends HookConsumerWidget {
                       child: Transform.scale(
                         scale: 0.96,
                         child: _CoverCard(
-                          imageUrl: state.deck[state.index + 1],
+                          book: state.deck[state.index + 1],
                           elevation: 1,
                         ),
                       ),
@@ -73,7 +135,7 @@ class HomeScreen extends HookConsumerWidget {
                               child: Stack(
                                 children: [
                                   _CoverCard(
-                                    imageUrl: state.deck[state.index],
+                                    book: state.deck[state.index],
                                     elevation: 6,
                                   ),
 
@@ -147,18 +209,16 @@ class HomeScreen extends HookConsumerWidget {
       ),
       floatingActionButton: M3eFab.regular(
         icon: Icon(Icons.share),
-        onPressed: () {
-          ref.read(bookApiProvider).getBooks(query: 'flutter');
-        },
+        onPressed: () {},
       ),
     );
   }
 }
 
 class _CoverCard extends StatelessWidget {
-  const _CoverCard({required this.imageUrl, this.elevation = 3});
+  const _CoverCard({required this.book, this.elevation = 3});
 
-  final String imageUrl;
+  final BookEntity book;
   final double elevation;
 
   @override
@@ -171,26 +231,73 @@ class _CoverCard extends StatelessWidget {
       child: SizedBox(
         width: 260,
         height: 360,
-        child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              imageUrl,
-              width: 229,
-              height: 291,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                width: 229,
-                height: 291,
-                color: cs.surfaceVariant,
-                alignment: Alignment.center,
-                child: Icon(
-                  Icons.broken_image_outlined,
-                  color: cs.onSurfaceVariant,
-                ),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Book thumbnail or placeholder
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: book.thumbnailUrl != null && book.thumbnailUrl!.isNotEmpty
+                  ? Image.network(
+                      book.thumbnailUrl!,
+                      width: 229,
+                      height: 291,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        width: 229,
+                        height: 291,
+                        color: cs.surfaceVariant,
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.book,
+                          size: 64,
+                          color: cs.onSurfaceVariant,
+                        ),
+                      ),
+                    )
+                  : Container(
+                      width: 229,
+                      height: 291,
+                      color: cs.surfaceVariant,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.book,
+                            size: 64,
+                            color: cs.onSurfaceVariant,
+                          ),
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              book.title,
+                              style: TextStyle(
+                                color: cs.onSurfaceVariant,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Text(
+                            book.author,
+                            style: TextStyle(
+                              color: cs.onSurfaceVariant,
+                              fontSize: 14,
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
             ),
-          ),
+          ],
         ),
       ),
     );
