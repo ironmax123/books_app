@@ -12,8 +12,7 @@ part of 'model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 BookApiResponse _$BookApiResponseFromJson(Map<String, dynamic> json) {
   return _BookApiResponse.fromJson(json);
@@ -25,12 +24,8 @@ mixin _$BookApiResponse {
   SearchRetrieveResponse? get searchRetrieveResponse =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this BookApiResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BookApiResponseCopyWith<BookApiResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -38,14 +33,12 @@ mixin _$BookApiResponse {
 /// @nodoc
 abstract class $BookApiResponseCopyWith<$Res> {
   factory $BookApiResponseCopyWith(
-    BookApiResponse value,
-    $Res Function(BookApiResponse) then,
-  ) = _$BookApiResponseCopyWithImpl<$Res, BookApiResponse>;
+          BookApiResponse value, $Res Function(BookApiResponse) then) =
+      _$BookApiResponseCopyWithImpl<$Res, BookApiResponse>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'searchRetrieveResponse')
-    SearchRetrieveResponse? searchRetrieveResponse,
-  });
+  $Res call(
+      {@JsonKey(name: 'searchRetrieveResponse')
+      SearchRetrieveResponse? searchRetrieveResponse});
 
   $SearchRetrieveResponseCopyWith<$Res>? get searchRetrieveResponse;
 }
@@ -60,24 +53,19 @@ class _$BookApiResponseCopyWithImpl<$Res, $Val extends BookApiResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? searchRetrieveResponse = freezed}) {
-    return _then(
-      _value.copyWith(
-            searchRetrieveResponse: freezed == searchRetrieveResponse
-                ? _value.searchRetrieveResponse
-                : searchRetrieveResponse // ignore: cast_nullable_to_non_nullable
-                      as SearchRetrieveResponse?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? searchRetrieveResponse = freezed,
+  }) {
+    return _then(_value.copyWith(
+      searchRetrieveResponse: freezed == searchRetrieveResponse
+          ? _value.searchRetrieveResponse
+          : searchRetrieveResponse // ignore: cast_nullable_to_non_nullable
+              as SearchRetrieveResponse?,
+    ) as $Val);
   }
 
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SearchRetrieveResponseCopyWith<$Res>? get searchRetrieveResponse {
@@ -85,28 +73,24 @@ class _$BookApiResponseCopyWithImpl<$Res, $Val extends BookApiResponse>
       return null;
     }
 
-    return $SearchRetrieveResponseCopyWith<$Res>(
-      _value.searchRetrieveResponse!,
-      (value) {
-        return _then(_value.copyWith(searchRetrieveResponse: value) as $Val);
-      },
-    );
+    return $SearchRetrieveResponseCopyWith<$Res>(_value.searchRetrieveResponse!,
+        (value) {
+      return _then(_value.copyWith(searchRetrieveResponse: value) as $Val);
+    });
   }
 }
 
 /// @nodoc
 abstract class _$$BookApiResponseImplCopyWith<$Res>
     implements $BookApiResponseCopyWith<$Res> {
-  factory _$$BookApiResponseImplCopyWith(
-    _$BookApiResponseImpl value,
-    $Res Function(_$BookApiResponseImpl) then,
-  ) = __$$BookApiResponseImplCopyWithImpl<$Res>;
+  factory _$$BookApiResponseImplCopyWith(_$BookApiResponseImpl value,
+          $Res Function(_$BookApiResponseImpl) then) =
+      __$$BookApiResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'searchRetrieveResponse')
-    SearchRetrieveResponse? searchRetrieveResponse,
-  });
+  $Res call(
+      {@JsonKey(name: 'searchRetrieveResponse')
+      SearchRetrieveResponse? searchRetrieveResponse});
 
   @override
   $SearchRetrieveResponseCopyWith<$Res>? get searchRetrieveResponse;
@@ -117,32 +101,28 @@ class __$$BookApiResponseImplCopyWithImpl<$Res>
     extends _$BookApiResponseCopyWithImpl<$Res, _$BookApiResponseImpl>
     implements _$$BookApiResponseImplCopyWith<$Res> {
   __$$BookApiResponseImplCopyWithImpl(
-    _$BookApiResponseImpl _value,
-    $Res Function(_$BookApiResponseImpl) _then,
-  ) : super(_value, _then);
+      _$BookApiResponseImpl _value, $Res Function(_$BookApiResponseImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? searchRetrieveResponse = freezed}) {
-    return _then(
-      _$BookApiResponseImpl(
-        searchRetrieveResponse: freezed == searchRetrieveResponse
-            ? _value.searchRetrieveResponse
-            : searchRetrieveResponse // ignore: cast_nullable_to_non_nullable
-                  as SearchRetrieveResponse?,
-      ),
-    );
+  $Res call({
+    Object? searchRetrieveResponse = freezed,
+  }) {
+    return _then(_$BookApiResponseImpl(
+      searchRetrieveResponse: freezed == searchRetrieveResponse
+          ? _value.searchRetrieveResponse
+          : searchRetrieveResponse // ignore: cast_nullable_to_non_nullable
+              as SearchRetrieveResponse?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$BookApiResponseImpl implements _BookApiResponse {
-  const _$BookApiResponseImpl({
-    @JsonKey(name: 'searchRetrieveResponse') this.searchRetrieveResponse,
-  });
+  const _$BookApiResponseImpl(
+      {@JsonKey(name: 'searchRetrieveResponse') this.searchRetrieveResponse});
 
   factory _$BookApiResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$BookApiResponseImplFromJson(json);
@@ -165,32 +145,30 @@ class _$BookApiResponseImpl implements _BookApiResponse {
                 other.searchRetrieveResponse == searchRetrieveResponse));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, searchRetrieveResponse);
 
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BookApiResponseImplCopyWith<_$BookApiResponseImpl> get copyWith =>
       __$$BookApiResponseImplCopyWithImpl<_$BookApiResponseImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BookApiResponseImplToJson(this);
+    return _$$BookApiResponseImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _BookApiResponse implements BookApiResponse {
-  const factory _BookApiResponse({
-    @JsonKey(name: 'searchRetrieveResponse')
-    final SearchRetrieveResponse? searchRetrieveResponse,
-  }) = _$BookApiResponseImpl;
+  const factory _BookApiResponse(
+          {@JsonKey(name: 'searchRetrieveResponse')
+          final SearchRetrieveResponse? searchRetrieveResponse}) =
+      _$BookApiResponseImpl;
 
   factory _BookApiResponse.fromJson(Map<String, dynamic> json) =
       _$BookApiResponseImpl.fromJson;
@@ -198,18 +176,14 @@ abstract class _BookApiResponse implements BookApiResponse {
   @override
   @JsonKey(name: 'searchRetrieveResponse')
   SearchRetrieveResponse? get searchRetrieveResponse;
-
-  /// Create a copy of BookApiResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BookApiResponseImplCopyWith<_$BookApiResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 SearchRetrieveResponse _$SearchRetrieveResponseFromJson(
-  Map<String, dynamic> json,
-) {
+    Map<String, dynamic> json) {
   return _SearchRetrieveResponse.fromJson(json);
 }
 
@@ -220,36 +194,28 @@ mixin _$SearchRetrieveResponse {
   @JsonKey(name: 'records')
   Records? get records => throw _privateConstructorUsedError;
 
-  /// Serializes this SearchRetrieveResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SearchRetrieveResponseCopyWith<SearchRetrieveResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $SearchRetrieveResponseCopyWith<$Res> {
-  factory $SearchRetrieveResponseCopyWith(
-    SearchRetrieveResponse value,
-    $Res Function(SearchRetrieveResponse) then,
-  ) = _$SearchRetrieveResponseCopyWithImpl<$Res, SearchRetrieveResponse>;
+  factory $SearchRetrieveResponseCopyWith(SearchRetrieveResponse value,
+          $Res Function(SearchRetrieveResponse) then) =
+      _$SearchRetrieveResponseCopyWithImpl<$Res, SearchRetrieveResponse>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'numberOfRecords') String? numberOfRecords,
-    @JsonKey(name: 'records') Records? records,
-  });
+  $Res call(
+      {@JsonKey(name: 'numberOfRecords') String? numberOfRecords,
+      @JsonKey(name: 'records') Records? records});
 
   $RecordsCopyWith<$Res>? get records;
 }
 
 /// @nodoc
-class _$SearchRetrieveResponseCopyWithImpl<
-  $Res,
-  $Val extends SearchRetrieveResponse
->
+class _$SearchRetrieveResponseCopyWithImpl<$Res,
+        $Val extends SearchRetrieveResponse>
     implements $SearchRetrieveResponseCopyWith<$Res> {
   _$SearchRetrieveResponseCopyWithImpl(this._value, this._then);
 
@@ -258,28 +224,24 @@ class _$SearchRetrieveResponseCopyWithImpl<
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? numberOfRecords = freezed, Object? records = freezed}) {
-    return _then(
-      _value.copyWith(
-            numberOfRecords: freezed == numberOfRecords
-                ? _value.numberOfRecords
-                : numberOfRecords // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            records: freezed == records
-                ? _value.records
-                : records // ignore: cast_nullable_to_non_nullable
-                      as Records?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? numberOfRecords = freezed,
+    Object? records = freezed,
+  }) {
+    return _then(_value.copyWith(
+      numberOfRecords: freezed == numberOfRecords
+          ? _value.numberOfRecords
+          : numberOfRecords // ignore: cast_nullable_to_non_nullable
+              as String?,
+      records: freezed == records
+          ? _value.records
+          : records // ignore: cast_nullable_to_non_nullable
+              as Records?,
+    ) as $Val);
   }
 
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RecordsCopyWith<$Res>? get records {
@@ -297,15 +259,14 @@ class _$SearchRetrieveResponseCopyWithImpl<
 abstract class _$$SearchRetrieveResponseImplCopyWith<$Res>
     implements $SearchRetrieveResponseCopyWith<$Res> {
   factory _$$SearchRetrieveResponseImplCopyWith(
-    _$SearchRetrieveResponseImpl value,
-    $Res Function(_$SearchRetrieveResponseImpl) then,
-  ) = __$$SearchRetrieveResponseImplCopyWithImpl<$Res>;
+          _$SearchRetrieveResponseImpl value,
+          $Res Function(_$SearchRetrieveResponseImpl) then) =
+      __$$SearchRetrieveResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'numberOfRecords') String? numberOfRecords,
-    @JsonKey(name: 'records') Records? records,
-  });
+  $Res call(
+      {@JsonKey(name: 'numberOfRecords') String? numberOfRecords,
+      @JsonKey(name: 'records') Records? records});
 
   @override
   $RecordsCopyWith<$Res>? get records;
@@ -313,41 +274,39 @@ abstract class _$$SearchRetrieveResponseImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SearchRetrieveResponseImplCopyWithImpl<$Res>
-    extends
-        _$SearchRetrieveResponseCopyWithImpl<$Res, _$SearchRetrieveResponseImpl>
+    extends _$SearchRetrieveResponseCopyWithImpl<$Res,
+        _$SearchRetrieveResponseImpl>
     implements _$$SearchRetrieveResponseImplCopyWith<$Res> {
   __$$SearchRetrieveResponseImplCopyWithImpl(
-    _$SearchRetrieveResponseImpl _value,
-    $Res Function(_$SearchRetrieveResponseImpl) _then,
-  ) : super(_value, _then);
+      _$SearchRetrieveResponseImpl _value,
+      $Res Function(_$SearchRetrieveResponseImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? numberOfRecords = freezed, Object? records = freezed}) {
-    return _then(
-      _$SearchRetrieveResponseImpl(
-        numberOfRecords: freezed == numberOfRecords
-            ? _value.numberOfRecords
-            : numberOfRecords // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        records: freezed == records
-            ? _value.records
-            : records // ignore: cast_nullable_to_non_nullable
-                  as Records?,
-      ),
-    );
+  $Res call({
+    Object? numberOfRecords = freezed,
+    Object? records = freezed,
+  }) {
+    return _then(_$SearchRetrieveResponseImpl(
+      numberOfRecords: freezed == numberOfRecords
+          ? _value.numberOfRecords
+          : numberOfRecords // ignore: cast_nullable_to_non_nullable
+              as String?,
+      records: freezed == records
+          ? _value.records
+          : records // ignore: cast_nullable_to_non_nullable
+              as Records?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$SearchRetrieveResponseImpl implements _SearchRetrieveResponse {
-  const _$SearchRetrieveResponseImpl({
-    @JsonKey(name: 'numberOfRecords') this.numberOfRecords,
-    @JsonKey(name: 'records') this.records,
-  });
+  const _$SearchRetrieveResponseImpl(
+      {@JsonKey(name: 'numberOfRecords') this.numberOfRecords,
+      @JsonKey(name: 'records') this.records});
 
   factory _$SearchRetrieveResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchRetrieveResponseImplFromJson(json);
@@ -374,33 +333,30 @@ class _$SearchRetrieveResponseImpl implements _SearchRetrieveResponse {
             (identical(other.records, records) || other.records == records));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, numberOfRecords, records);
 
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchRetrieveResponseImplCopyWith<_$SearchRetrieveResponseImpl>
-  get copyWith =>
-      __$$SearchRetrieveResponseImplCopyWithImpl<_$SearchRetrieveResponseImpl>(
-        this,
-        _$identity,
-      );
+      get copyWith => __$$SearchRetrieveResponseImplCopyWithImpl<
+          _$SearchRetrieveResponseImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SearchRetrieveResponseImplToJson(this);
+    return _$$SearchRetrieveResponseImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _SearchRetrieveResponse implements SearchRetrieveResponse {
-  const factory _SearchRetrieveResponse({
-    @JsonKey(name: 'numberOfRecords') final String? numberOfRecords,
-    @JsonKey(name: 'records') final Records? records,
-  }) = _$SearchRetrieveResponseImpl;
+  const factory _SearchRetrieveResponse(
+          {@JsonKey(name: 'numberOfRecords') final String? numberOfRecords,
+          @JsonKey(name: 'records') final Records? records}) =
+      _$SearchRetrieveResponseImpl;
 
   factory _SearchRetrieveResponse.fromJson(Map<String, dynamic> json) =
       _$SearchRetrieveResponseImpl.fromJson;
@@ -411,13 +367,10 @@ abstract class _SearchRetrieveResponse implements SearchRetrieveResponse {
   @override
   @JsonKey(name: 'records')
   Records? get records;
-
-  /// Create a copy of SearchRetrieveResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchRetrieveResponseImplCopyWith<_$SearchRetrieveResponseImpl>
-  get copyWith => throw _privateConstructorUsedError;
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 Records _$RecordsFromJson(Map<String, dynamic> json) {
@@ -429,12 +382,8 @@ mixin _$Records {
   @JsonKey(name: 'record')
   dynamic get record => throw _privateConstructorUsedError;
 
-  /// Serializes this Records to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Records
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RecordsCopyWith<Records> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -456,29 +405,25 @@ class _$RecordsCopyWithImpl<$Res, $Val extends Records>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Records
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? record = freezed}) {
-    return _then(
-      _value.copyWith(
-            record: freezed == record
-                ? _value.record
-                : record // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? record = freezed,
+  }) {
+    return _then(_value.copyWith(
+      record: freezed == record
+          ? _value.record
+          : record // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$RecordsImplCopyWith<$Res> implements $RecordsCopyWith<$Res> {
   factory _$$RecordsImplCopyWith(
-    _$RecordsImpl value,
-    $Res Function(_$RecordsImpl) then,
-  ) = __$$RecordsImplCopyWithImpl<$Res>;
+          _$RecordsImpl value, $Res Function(_$RecordsImpl) then) =
+      __$$RecordsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'record') dynamic record});
@@ -489,23 +434,20 @@ class __$$RecordsImplCopyWithImpl<$Res>
     extends _$RecordsCopyWithImpl<$Res, _$RecordsImpl>
     implements _$$RecordsImplCopyWith<$Res> {
   __$$RecordsImplCopyWithImpl(
-    _$RecordsImpl _value,
-    $Res Function(_$RecordsImpl) _then,
-  ) : super(_value, _then);
+      _$RecordsImpl _value, $Res Function(_$RecordsImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of Records
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? record = freezed}) {
-    return _then(
-      _$RecordsImpl(
-        record: freezed == record
-            ? _value.record
-            : record // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-      ),
-    );
+  $Res call({
+    Object? record = freezed,
+  }) {
+    return _then(_$RecordsImpl(
+      record: freezed == record
+          ? _value.record
+          : record // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
   }
 }
 
@@ -534,14 +476,12 @@ class _$RecordsImpl implements _Records {
             const DeepCollectionEquality().equals(other.record, record));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(record));
 
-  /// Create a copy of Records
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RecordsImplCopyWith<_$RecordsImpl> get copyWith =>
@@ -549,7 +489,9 @@ class _$RecordsImpl implements _Records {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RecordsImplToJson(this);
+    return _$$RecordsImplToJson(
+      this,
+    );
   }
 }
 
@@ -562,11 +504,8 @@ abstract class _Records implements Records {
   @override
   @JsonKey(name: 'record')
   dynamic get record;
-
-  /// Create a copy of Records
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RecordsImplCopyWith<_$RecordsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -580,12 +519,8 @@ mixin _$Record {
   @JsonKey(name: 'recordData')
   RecordData? get recordData => throw _privateConstructorUsedError;
 
-  /// Serializes this Record to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RecordCopyWith<Record> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -609,24 +544,19 @@ class _$RecordCopyWithImpl<$Res, $Val extends Record>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? recordData = freezed}) {
-    return _then(
-      _value.copyWith(
-            recordData: freezed == recordData
-                ? _value.recordData
-                : recordData // ignore: cast_nullable_to_non_nullable
-                      as RecordData?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? recordData = freezed,
+  }) {
+    return _then(_value.copyWith(
+      recordData: freezed == recordData
+          ? _value.recordData
+          : recordData // ignore: cast_nullable_to_non_nullable
+              as RecordData?,
+    ) as $Val);
   }
 
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RecordDataCopyWith<$Res>? get recordData {
@@ -643,9 +573,8 @@ class _$RecordCopyWithImpl<$Res, $Val extends Record>
 /// @nodoc
 abstract class _$$RecordImplCopyWith<$Res> implements $RecordCopyWith<$Res> {
   factory _$$RecordImplCopyWith(
-    _$RecordImpl value,
-    $Res Function(_$RecordImpl) then,
-  ) = __$$RecordImplCopyWithImpl<$Res>;
+          _$RecordImpl value, $Res Function(_$RecordImpl) then) =
+      __$$RecordImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'recordData') RecordData? recordData});
@@ -659,23 +588,20 @@ class __$$RecordImplCopyWithImpl<$Res>
     extends _$RecordCopyWithImpl<$Res, _$RecordImpl>
     implements _$$RecordImplCopyWith<$Res> {
   __$$RecordImplCopyWithImpl(
-    _$RecordImpl _value,
-    $Res Function(_$RecordImpl) _then,
-  ) : super(_value, _then);
+      _$RecordImpl _value, $Res Function(_$RecordImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? recordData = freezed}) {
-    return _then(
-      _$RecordImpl(
-        recordData: freezed == recordData
-            ? _value.recordData
-            : recordData // ignore: cast_nullable_to_non_nullable
-                  as RecordData?,
-      ),
-    );
+  $Res call({
+    Object? recordData = freezed,
+  }) {
+    return _then(_$RecordImpl(
+      recordData: freezed == recordData
+          ? _value.recordData
+          : recordData // ignore: cast_nullable_to_non_nullable
+              as RecordData?,
+    ));
   }
 }
 
@@ -705,13 +631,11 @@ class _$RecordImpl implements _Record {
                 other.recordData == recordData));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, recordData);
 
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RecordImplCopyWith<_$RecordImpl> get copyWith =>
@@ -719,25 +643,24 @@ class _$RecordImpl implements _Record {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RecordImplToJson(this);
+    return _$$RecordImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Record implements Record {
-  const factory _Record({
-    @JsonKey(name: 'recordData') final RecordData? recordData,
-  }) = _$RecordImpl;
+  const factory _Record(
+          {@JsonKey(name: 'recordData') final RecordData? recordData}) =
+      _$RecordImpl;
 
   factory _Record.fromJson(Map<String, dynamic> json) = _$RecordImpl.fromJson;
 
   @override
   @JsonKey(name: 'recordData')
   RecordData? get recordData;
-
-  /// Create a copy of Record
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RecordImplCopyWith<_$RecordImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -751,12 +674,8 @@ mixin _$RecordData {
   @JsonKey(name: 'srw_dc:dc')
   DublinCore? get dc => throw _privateConstructorUsedError;
 
-  /// Serializes this RecordData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RecordDataCopyWith<RecordData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -764,9 +683,8 @@ mixin _$RecordData {
 /// @nodoc
 abstract class $RecordDataCopyWith<$Res> {
   factory $RecordDataCopyWith(
-    RecordData value,
-    $Res Function(RecordData) then,
-  ) = _$RecordDataCopyWithImpl<$Res, RecordData>;
+          RecordData value, $Res Function(RecordData) then) =
+      _$RecordDataCopyWithImpl<$Res, RecordData>;
   @useResult
   $Res call({@JsonKey(name: 'srw_dc:dc') DublinCore? dc});
 
@@ -783,24 +701,19 @@ class _$RecordDataCopyWithImpl<$Res, $Val extends RecordData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dc = freezed}) {
-    return _then(
-      _value.copyWith(
-            dc: freezed == dc
-                ? _value.dc
-                : dc // ignore: cast_nullable_to_non_nullable
-                      as DublinCore?,
-          )
-          as $Val,
-    );
+  $Res call({
+    Object? dc = freezed,
+  }) {
+    return _then(_value.copyWith(
+      dc: freezed == dc
+          ? _value.dc
+          : dc // ignore: cast_nullable_to_non_nullable
+              as DublinCore?,
+    ) as $Val);
   }
 
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DublinCoreCopyWith<$Res>? get dc {
@@ -818,9 +731,8 @@ class _$RecordDataCopyWithImpl<$Res, $Val extends RecordData>
 abstract class _$$RecordDataImplCopyWith<$Res>
     implements $RecordDataCopyWith<$Res> {
   factory _$$RecordDataImplCopyWith(
-    _$RecordDataImpl value,
-    $Res Function(_$RecordDataImpl) then,
-  ) = __$$RecordDataImplCopyWithImpl<$Res>;
+          _$RecordDataImpl value, $Res Function(_$RecordDataImpl) then) =
+      __$$RecordDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'srw_dc:dc') DublinCore? dc});
@@ -834,23 +746,20 @@ class __$$RecordDataImplCopyWithImpl<$Res>
     extends _$RecordDataCopyWithImpl<$Res, _$RecordDataImpl>
     implements _$$RecordDataImplCopyWith<$Res> {
   __$$RecordDataImplCopyWithImpl(
-    _$RecordDataImpl _value,
-    $Res Function(_$RecordDataImpl) _then,
-  ) : super(_value, _then);
+      _$RecordDataImpl _value, $Res Function(_$RecordDataImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? dc = freezed}) {
-    return _then(
-      _$RecordDataImpl(
-        dc: freezed == dc
-            ? _value.dc
-            : dc // ignore: cast_nullable_to_non_nullable
-                  as DublinCore?,
-      ),
-    );
+  $Res call({
+    Object? dc = freezed,
+  }) {
+    return _then(_$RecordDataImpl(
+      dc: freezed == dc
+          ? _value.dc
+          : dc // ignore: cast_nullable_to_non_nullable
+              as DublinCore?,
+    ));
   }
 }
 
@@ -879,13 +788,11 @@ class _$RecordDataImpl implements _RecordData {
             (identical(other.dc, dc) || other.dc == dc));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, dc);
 
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RecordDataImplCopyWith<_$RecordDataImpl> get copyWith =>
@@ -893,14 +800,15 @@ class _$RecordDataImpl implements _RecordData {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RecordDataImplToJson(this);
+    return _$$RecordDataImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _RecordData implements RecordData {
-  const factory _RecordData({
-    @JsonKey(name: 'srw_dc:dc') final DublinCore? dc,
-  }) = _$RecordDataImpl;
+  const factory _RecordData(
+      {@JsonKey(name: 'srw_dc:dc') final DublinCore? dc}) = _$RecordDataImpl;
 
   factory _RecordData.fromJson(Map<String, dynamic> json) =
       _$RecordDataImpl.fromJson;
@@ -908,11 +816,8 @@ abstract class _RecordData implements RecordData {
   @override
   @JsonKey(name: 'srw_dc:dc')
   DublinCore? get dc;
-
-  /// Create a copy of RecordData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RecordDataImplCopyWith<_$RecordDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -936,12 +841,8 @@ mixin _$DublinCore {
   @JsonKey(name: 'dc:description')
   dynamic get description => throw _privateConstructorUsedError;
 
-  /// Serializes this DublinCore to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of DublinCore
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DublinCoreCopyWith<DublinCore> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -949,18 +850,16 @@ mixin _$DublinCore {
 /// @nodoc
 abstract class $DublinCoreCopyWith<$Res> {
   factory $DublinCoreCopyWith(
-    DublinCore value,
-    $Res Function(DublinCore) then,
-  ) = _$DublinCoreCopyWithImpl<$Res, DublinCore>;
+          DublinCore value, $Res Function(DublinCore) then) =
+      _$DublinCoreCopyWithImpl<$Res, DublinCore>;
   @useResult
-  $Res call({
-    @JsonKey(name: 'dc:title') dynamic title,
-    @JsonKey(name: 'dc:creator') dynamic creator,
-    @JsonKey(name: 'dc:publisher') dynamic publisher,
-    @JsonKey(name: 'dc:date') dynamic date,
-    @JsonKey(name: 'dc:identifier') dynamic identifier,
-    @JsonKey(name: 'dc:description') dynamic description,
-  });
+  $Res call(
+      {@JsonKey(name: 'dc:title') dynamic title,
+      @JsonKey(name: 'dc:creator') dynamic creator,
+      @JsonKey(name: 'dc:publisher') dynamic publisher,
+      @JsonKey(name: 'dc:date') dynamic date,
+      @JsonKey(name: 'dc:identifier') dynamic identifier,
+      @JsonKey(name: 'dc:description') dynamic description});
 }
 
 /// @nodoc
@@ -973,8 +872,6 @@ class _$DublinCoreCopyWithImpl<$Res, $Val extends DublinCore>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DublinCore
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -985,35 +882,32 @@ class _$DublinCoreCopyWithImpl<$Res, $Val extends DublinCore>
     Object? identifier = freezed,
     Object? description = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            title: freezed == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-            creator: freezed == creator
-                ? _value.creator
-                : creator // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-            publisher: freezed == publisher
-                ? _value.publisher
-                : publisher // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-            date: freezed == date
-                ? _value.date
-                : date // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-            identifier: freezed == identifier
-                ? _value.identifier
-                : identifier // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-            description: freezed == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                      as dynamic,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      creator: freezed == creator
+          ? _value.creator
+          : creator // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      identifier: freezed == identifier
+          ? _value.identifier
+          : identifier // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ) as $Val);
   }
 }
 
@@ -1021,19 +915,17 @@ class _$DublinCoreCopyWithImpl<$Res, $Val extends DublinCore>
 abstract class _$$DublinCoreImplCopyWith<$Res>
     implements $DublinCoreCopyWith<$Res> {
   factory _$$DublinCoreImplCopyWith(
-    _$DublinCoreImpl value,
-    $Res Function(_$DublinCoreImpl) then,
-  ) = __$$DublinCoreImplCopyWithImpl<$Res>;
+          _$DublinCoreImpl value, $Res Function(_$DublinCoreImpl) then) =
+      __$$DublinCoreImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    @JsonKey(name: 'dc:title') dynamic title,
-    @JsonKey(name: 'dc:creator') dynamic creator,
-    @JsonKey(name: 'dc:publisher') dynamic publisher,
-    @JsonKey(name: 'dc:date') dynamic date,
-    @JsonKey(name: 'dc:identifier') dynamic identifier,
-    @JsonKey(name: 'dc:description') dynamic description,
-  });
+  $Res call(
+      {@JsonKey(name: 'dc:title') dynamic title,
+      @JsonKey(name: 'dc:creator') dynamic creator,
+      @JsonKey(name: 'dc:publisher') dynamic publisher,
+      @JsonKey(name: 'dc:date') dynamic date,
+      @JsonKey(name: 'dc:identifier') dynamic identifier,
+      @JsonKey(name: 'dc:description') dynamic description});
 }
 
 /// @nodoc
@@ -1041,12 +933,9 @@ class __$$DublinCoreImplCopyWithImpl<$Res>
     extends _$DublinCoreCopyWithImpl<$Res, _$DublinCoreImpl>
     implements _$$DublinCoreImplCopyWith<$Res> {
   __$$DublinCoreImplCopyWithImpl(
-    _$DublinCoreImpl _value,
-    $Res Function(_$DublinCoreImpl) _then,
-  ) : super(_value, _then);
+      _$DublinCoreImpl _value, $Res Function(_$DublinCoreImpl) _then)
+      : super(_value, _then);
 
-  /// Create a copy of DublinCore
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1057,48 +946,45 @@ class __$$DublinCoreImplCopyWithImpl<$Res>
     Object? identifier = freezed,
     Object? description = freezed,
   }) {
-    return _then(
-      _$DublinCoreImpl(
-        title: freezed == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-        creator: freezed == creator
-            ? _value.creator
-            : creator // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-        publisher: freezed == publisher
-            ? _value.publisher
-            : publisher // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-        date: freezed == date
-            ? _value.date
-            : date // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-        identifier: freezed == identifier
-            ? _value.identifier
-            : identifier // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-        description: freezed == description
-            ? _value.description
-            : description // ignore: cast_nullable_to_non_nullable
-                  as dynamic,
-      ),
-    );
+    return _then(_$DublinCoreImpl(
+      title: freezed == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      creator: freezed == creator
+          ? _value.creator
+          : creator // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      publisher: freezed == publisher
+          ? _value.publisher
+          : publisher // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      identifier: freezed == identifier
+          ? _value.identifier
+          : identifier // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$DublinCoreImpl implements _DublinCore {
-  const _$DublinCoreImpl({
-    @JsonKey(name: 'dc:title') this.title,
-    @JsonKey(name: 'dc:creator') this.creator,
-    @JsonKey(name: 'dc:publisher') this.publisher,
-    @JsonKey(name: 'dc:date') this.date,
-    @JsonKey(name: 'dc:identifier') this.identifier,
-    @JsonKey(name: 'dc:description') this.description,
-  });
+  const _$DublinCoreImpl(
+      {@JsonKey(name: 'dc:title') this.title,
+      @JsonKey(name: 'dc:creator') this.creator,
+      @JsonKey(name: 'dc:publisher') this.publisher,
+      @JsonKey(name: 'dc:date') this.date,
+      @JsonKey(name: 'dc:identifier') this.identifier,
+      @JsonKey(name: 'dc:description') this.description});
 
   factory _$DublinCoreImpl.fromJson(Map<String, dynamic> json) =>
       _$$DublinCoreImplFromJson(json);
@@ -1136,31 +1022,24 @@ class _$DublinCoreImpl implements _DublinCore {
             const DeepCollectionEquality().equals(other.creator, creator) &&
             const DeepCollectionEquality().equals(other.publisher, publisher) &&
             const DeepCollectionEquality().equals(other.date, date) &&
-            const DeepCollectionEquality().equals(
-              other.identifier,
-              identifier,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other.description,
-              description,
-            ));
+            const DeepCollectionEquality()
+                .equals(other.identifier, identifier) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(title),
-    const DeepCollectionEquality().hash(creator),
-    const DeepCollectionEquality().hash(publisher),
-    const DeepCollectionEquality().hash(date),
-    const DeepCollectionEquality().hash(identifier),
-    const DeepCollectionEquality().hash(description),
-  );
+      runtimeType,
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(creator),
+      const DeepCollectionEquality().hash(publisher),
+      const DeepCollectionEquality().hash(date),
+      const DeepCollectionEquality().hash(identifier),
+      const DeepCollectionEquality().hash(description));
 
-  /// Create a copy of DublinCore
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DublinCoreImplCopyWith<_$DublinCoreImpl> get copyWith =>
@@ -1168,19 +1047,21 @@ class _$DublinCoreImpl implements _DublinCore {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DublinCoreImplToJson(this);
+    return _$$DublinCoreImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _DublinCore implements DublinCore {
-  const factory _DublinCore({
-    @JsonKey(name: 'dc:title') final dynamic title,
-    @JsonKey(name: 'dc:creator') final dynamic creator,
-    @JsonKey(name: 'dc:publisher') final dynamic publisher,
-    @JsonKey(name: 'dc:date') final dynamic date,
-    @JsonKey(name: 'dc:identifier') final dynamic identifier,
-    @JsonKey(name: 'dc:description') final dynamic description,
-  }) = _$DublinCoreImpl;
+  const factory _DublinCore(
+          {@JsonKey(name: 'dc:title') final dynamic title,
+          @JsonKey(name: 'dc:creator') final dynamic creator,
+          @JsonKey(name: 'dc:publisher') final dynamic publisher,
+          @JsonKey(name: 'dc:date') final dynamic date,
+          @JsonKey(name: 'dc:identifier') final dynamic identifier,
+          @JsonKey(name: 'dc:description') final dynamic description}) =
+      _$DublinCoreImpl;
 
   factory _DublinCore.fromJson(Map<String, dynamic> json) =
       _$DublinCoreImpl.fromJson;
@@ -1203,11 +1084,8 @@ abstract class _DublinCore implements DublinCore {
   @override
   @JsonKey(name: 'dc:description')
   dynamic get description;
-
-  /// Create a copy of DublinCore
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DublinCoreImplCopyWith<_$DublinCoreImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

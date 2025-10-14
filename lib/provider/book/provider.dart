@@ -105,8 +105,14 @@ class BookApi {
       // まずOpenBD APIから取得を試みる
       thumbnailUrl = await _fetchCoverUrlFromOpenBD(identifier);
 
-      // OpenBDで取得できなかった場合、NDLのサムネイルURLを使用
-      thumbnailUrl ??= 'https://ndlsearch.ndl.go.jp/thumbnail/$identifier.jpg';
+      // OpenBDで取得できなかった場合、NDLのサムネイルURLを確認
+      if (thumbnailUrl == null) {
+        final ndlUrl = 'https://ndlsearch.ndl.go.jp/thumbnail/$identifier.jpg';
+        final isValid = await _isValidImageUrl(ndlUrl);
+        if (isValid) {
+          thumbnailUrl = ndlUrl;
+        }
+      }
     }
 
     return BookEntity(
@@ -146,6 +152,23 @@ class BookApi {
       // エラー時はnullを返してNDLのフォールバックを使う
     }
     return null;
+  }
+
+  Future<bool> _isValidImageUrl(String url) async {
+    try {
+      final dio = Dio();
+      final response = await dio.head(
+        url,
+        options: Options(
+          validateStatus: (status) => status != null && status < 500,
+          receiveTimeout: const Duration(seconds: 3),
+          sendTimeout: const Duration(seconds: 3),
+        ),
+      );
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
   }
 
   String? _extractIdentifierFromItem(Map<String, dynamic> item) {

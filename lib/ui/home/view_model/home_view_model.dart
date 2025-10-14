@@ -1,5 +1,6 @@
 import 'package:book_app/data/entity/book/entity.dart';
 import 'package:book_app/provider/book/provider.dart';
+import 'package:book_app/provider/saved_books/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -115,47 +116,40 @@ class HomeViewModel extends _$HomeViewModel {
     }
   }
 
-  void commitDecision(bool isSave, BuildContext context) {
+  Future<void> commitDecision(bool isSave, BuildContext context) async {
+    // Save book to Hive if user swiped right
+    if (isSave && state.index < state.deck.length) {
+      final currentBook = state.deck[state.index];
+      await ref.read(savedBooksListProvider.notifier).saveBook(currentBook);
+    }
+
+    // Check if context is still mounted after async operation
+    if (!context.mounted) return;
+
     final cs = Theme.of(context).colorScheme;
     final icon = isSave ? Icons.bookmark_add_outlined : Icons.close_rounded;
     final bg = isSave ? cs.tertiaryContainer : cs.errorContainer;
     final fg = isSave ? cs.onTertiaryContainer : cs.onErrorContainer;
 
-    if (isSave || (state.deck[state.index].thumbnailUrl != null &&
-                   state.deck[state.index].thumbnailUrl!.isNotEmpty)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          backgroundColor: bg,
-          content: Row(
-            children: [
-              Icon(icon, color: fg),
-              const SizedBox(width: 8),
-              Text(isSave ? 'Saved' : 'Skipped', style: TextStyle(color: fg)),
-            ],
-          ),
-          duration: const Duration(milliseconds: 800),
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: bg,
+        content: Row(
+          children: [
+            Icon(icon, color: fg),
+            const SizedBox(width: 8),
+            Text(isSave ? 'Saved' : 'Skipped', style: TextStyle(color: fg)),
+          ],
         ),
-      );
-    }
+        duration: const Duration(milliseconds: 800),
+      ),
+    );
 
     state = state.copyWith(
       index: (state.index + 1).clamp(0, state.deck.length),
       drag: Offset.zero,
     );
-
-    // Auto-skip following null thumbnails
-    skipNullThumbnails();
-  }
-
-  void skipNullThumbnails() {
-    while (state.index < state.deck.length &&
-        (state.deck[state.index].thumbnailUrl == null ||
-            state.deck[state.index].thumbnailUrl!.isEmpty)) {
-      state = state.copyWith(
-        index: (state.index + 1).clamp(0, state.deck.length),
-      );
-    }
   }
 
   void resetDrag() {

@@ -27,8 +27,8 @@ class CapsuleButton extends StatelessWidget {
         borderRadius: radius,
         onTap: onPressed,
         child: SizedBox(
-          width: 88,
-          height: 136,
+          width: 50,
+          height: 100,
           child: Center(
             child: IconTheme(
               data: IconThemeData(color: ringColor, size: 28),

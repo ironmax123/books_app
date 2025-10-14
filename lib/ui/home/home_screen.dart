@@ -23,16 +23,6 @@ class HomeScreen extends HookConsumerWidget {
     );
     final searchController = useTextEditingController();
 
-    // Auto-skip cards without thumbnails on initial load
-    useEffect(() {
-      if (!state.isLoading && state.deck.isNotEmpty) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          viewModel.skipNullThumbnails();
-        });
-      }
-      return null;
-    }, [state.deck, state.isLoading]);
-
     // Show loading indicator
     if (state.isLoading) {
       return Scaffold(
@@ -221,17 +211,16 @@ class _CoverCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Book thumbnail only (no placeholder)
-            if (book.thumbnailUrl != null && book.thumbnailUrl!.isNotEmpty)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  book.thumbnailUrl!,
-                  width: 229,
-                  height: 291,
-                  fit: BoxFit.cover,
-                ),
+            // Book thumbnail
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                book.thumbnailUrl!,
+                width: 229,
+                height: 291,
+                fit: BoxFit.cover,
               ),
+            ),
           ],
         ),
       ),
