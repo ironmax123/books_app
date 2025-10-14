@@ -30,6 +30,7 @@ dependencies:
     git:
       url: git@github.com:pochipochi-tudoi/m3_expressive_flutter.git
       ref: main
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

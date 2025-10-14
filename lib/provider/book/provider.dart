@@ -22,17 +22,20 @@ class BookApi {
   final _xml2json = Xml2Json();
 
   Future<List<BookEntity>> getBooks({required String query}) async {
-    final xmlString = await _api.get('api/opensearch?title=$query') as String;
+    final xmlString =
+        await _api.get('api/opensearch?title=$query&cnt=500') as String;
 
     final recordList = _parseXmlResponse(xmlString);
     final entities = await Future.wait(
       recordList.map((record) => _parseRecord(record)),
     );
 
-    // ISBNがnullのものを除外
+    // ISBNまたはthumbnailUrlがnullのものを除外
     return entities
         .whereType<BookEntity>()
-        .where((e) => e.isbn != null)
+        .where((e) => e.isbn != null &&
+                     e.thumbnailUrl != null &&
+                     e.thumbnailUrl!.isNotEmpty)
         .toList();
   }
 

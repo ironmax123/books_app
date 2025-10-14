@@ -121,25 +121,41 @@ class HomeViewModel extends _$HomeViewModel {
     final bg = isSave ? cs.tertiaryContainer : cs.errorContainer;
     final fg = isSave ? cs.onTertiaryContainer : cs.onErrorContainer;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: bg,
-        content: Row(
-          children: [
-            Icon(icon, color: fg),
-            const SizedBox(width: 8),
-            Text(isSave ? 'Saved' : 'Skipped', style: TextStyle(color: fg)),
-          ],
+    if (isSave || (state.deck[state.index].thumbnailUrl != null &&
+                   state.deck[state.index].thumbnailUrl!.isNotEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: bg,
+          content: Row(
+            children: [
+              Icon(icon, color: fg),
+              const SizedBox(width: 8),
+              Text(isSave ? 'Saved' : 'Skipped', style: TextStyle(color: fg)),
+            ],
+          ),
+          duration: const Duration(milliseconds: 800),
         ),
-        duration: const Duration(milliseconds: 800),
-      ),
-    );
+      );
+    }
 
     state = state.copyWith(
       index: (state.index + 1).clamp(0, state.deck.length),
       drag: Offset.zero,
     );
+
+    // Auto-skip following null thumbnails
+    skipNullThumbnails();
+  }
+
+  void skipNullThumbnails() {
+    while (state.index < state.deck.length &&
+        (state.deck[state.index].thumbnailUrl == null ||
+            state.deck[state.index].thumbnailUrl!.isEmpty)) {
+      state = state.copyWith(
+        index: (state.index + 1).clamp(0, state.deck.length),
+      );
+    }
   }
 
   void resetDrag() {
