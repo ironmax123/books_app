@@ -20,7 +20,10 @@ class SavedScreen extends HookConsumerWidget {
       ),
       body: state.savedBooks.isEmpty
           ? const Center(
-              child: Text('保存された本がありません', style: TextStyle(fontSize: 16)),
+              child: Text(
+                '保存された本がありません',
+                style: TextStyle(fontSize: 16),
+              ),
             )
           : ListView.builder(
               itemCount: state.savedBooks.length,

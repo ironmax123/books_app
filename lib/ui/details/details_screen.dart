@@ -32,6 +32,7 @@ class DetailsScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: M3eFab.regular(
+        color: Theme.of(context).colorScheme.outline,
         icon: Icon(Icons.share),
         onPressed: () {},
       ),

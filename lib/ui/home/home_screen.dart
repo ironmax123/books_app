@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:m3_expressive_flutter/m3_expressive_flutter.dart';
 
 import 'components/home_button.dart';
 import 'view_model/home_view_model.dart';
@@ -25,19 +24,19 @@ class HomeScreen extends HookConsumerWidget {
 
     // Show loading indicator
     if (state.isLoading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Center(child: CircularProgressIndicator());
     }
 
     // Show error message
     if (state.error != null) {
-      return Scaffold(
-        body: Center(child: Text('Error: ${state.error}')),
-      );
+      return Center(child: Text('Error: ${state.error}'));
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('ホーム'),
+        backgroundColor: cs.secondaryFixed,
+      ),
       body: Column(
         children: [
           const Gap(10),
@@ -134,7 +133,7 @@ class HomeScreen extends HookConsumerWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 100),
+            padding: const EdgeInsets.only(bottom: 140),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -153,10 +152,6 @@ class HomeScreen extends HookConsumerWidget {
             ),
           ),
         ],
-      ),
-      floatingActionButton: M3eFab.regular(
-        icon: Icon(Icons.share),
-        onPressed: () {},
       ),
     );
   }

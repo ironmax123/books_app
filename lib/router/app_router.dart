@@ -1,15 +1,37 @@
+import 'package:book_app/ui/home/home_screen.dart';
 import 'package:book_app/ui/main_scaffold.dart';
+import 'package:book_app/ui/saved/saved_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../ui/details/details_screen.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/home',
   routes: [
-    GoRoute(
-      path: '/',
-      name: 'main',
-      builder: (context, state) => const MainScaffold(),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return MainScaffold(navigationShell: navigationShell);
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/home',
+              name: 'home',
+              builder: (context, state) => const HomeScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/saved',
+              name: 'saved',
+              builder: (context, state) => const SavedScreen(),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(
       path: '/details',
@@ -29,6 +51,7 @@ final appRouter = GoRouter(
 
 class Routes {
   Routes._();
-  static const main = '/';
+  static const home = '/home';
+  static const saved = '/saved';
   static const details = '/details';
 }
