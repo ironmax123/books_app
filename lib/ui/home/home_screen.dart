@@ -3,11 +3,9 @@ import 'package:book_app/ui/home/components/home_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:m3_expressive_flutter/m3_expressive_flutter.dart';
 
-import '../../router/app_router.dart';
 import 'components/home_button.dart';
 import 'view_model/home_view_model.dart';
 
@@ -27,49 +25,19 @@ class HomeScreen extends HookConsumerWidget {
 
     // Show loading indicator
     if (state.isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: cs.secondary,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.bookmark_outline),
-              tooltip: 'Saved',
-              onPressed: () {},
-            ),
-          ],
-        ),
-        body: const Center(child: CircularProgressIndicator()),
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
       );
     }
 
     // Show error message
     if (state.error != null) {
       return Scaffold(
-        appBar: AppBar(
-          backgroundColor: cs.secondary,
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.bookmark_outline),
-              tooltip: 'Saved',
-              onPressed: () {},
-            ),
-          ],
-        ),
         body: Center(child: Text('Error: ${state.error}')),
       );
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: cs.secondary,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.bookmark_added_rounded, size: 32),
-            tooltip: '保存一覧',
-            onPressed: () => context.push(Routes.saved),
-          ),
-        ],
-      ),
       body: Column(
         children: [
           const Gap(10),

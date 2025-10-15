@@ -26,6 +26,7 @@ class DetailsScreenCard extends StatelessWidget {
         elevation: 6,
         clipBehavior: Clip.antiAlias,
         margin: const EdgeInsets.all(16),
+        color: theme.colorScheme.primaryFixed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 640),
@@ -48,7 +49,7 @@ class DetailsScreenCard extends StatelessWidget {
                         if (progress == null) return child;
                         return DecoratedBox(
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.surfaceVariant,
+                            color: theme.colorScheme.primaryFixed,
                           ),
                           child: const Center(
                             child: CircularProgressIndicator(),
@@ -56,7 +57,7 @@ class DetailsScreenCard extends StatelessWidget {
                         );
                       },
                       errorBuilder: (context, _, __) => Container(
-                        color: theme.colorScheme.surfaceVariant,
+                        color: theme.colorScheme.primaryFixed,
                         alignment: Alignment.center,
                         child: Icon(
                           Icons.menu_book_rounded,
@@ -70,7 +71,10 @@ class DetailsScreenCard extends StatelessWidget {
                 const SizedBox(height: 24),
 
                 // Description
-                Text(description, style: theme.textTheme.bodyLarge),
+                Text(
+                  description.isNotEmpty ? description : '説明がありません',
+                  style: theme.textTheme.bodyLarge,
+                ),
                 const SizedBox(height: 24),
 
                 // Author label

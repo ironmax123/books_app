@@ -16,14 +16,11 @@ class SavedScreen extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('保存した本'),
-        backgroundColor: cs.secondary,
+        backgroundColor: cs.secondaryFixed,
       ),
       body: state.savedBooks.isEmpty
           ? const Center(
-              child: Text(
-                '保存された本がありません',
-                style: TextStyle(fontSize: 16),
-              ),
+              child: Text('保存された本がありません', style: TextStyle(fontSize: 16)),
             )
           : ListView.builder(
               itemCount: state.savedBooks.length,
@@ -33,6 +30,7 @@ class SavedScreen extends HookConsumerWidget {
                   title: book.title,
                   author: book.author,
                   thumbnailUrl: book.thumbnailUrl,
+                  description: book.description,
                   publicationDate: book.publicationDate,
                   onDelete: () async {
                     if (book.isbn != null) {

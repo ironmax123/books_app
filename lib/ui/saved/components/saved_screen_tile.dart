@@ -9,12 +9,14 @@ class SavedScreenTile extends StatelessWidget {
     required this.title,
     this.thumbnailUrl,
     required this.author,
+    this.description,
     this.publicationDate,
     this.onDelete,
   });
   final String title;
   final String author;
   final String? thumbnailUrl;
+  final String? description;
   final String? publicationDate;
   final VoidCallback? onDelete;
 
@@ -29,7 +31,15 @@ class SavedScreenTile extends StatelessWidget {
         shadowColor: Colors.black26,
         borderRadius: BorderRadius.circular(24),
         child: InkWell(
-          onTap: () => context.push(Routes.details),
+          onTap: () => context.push(
+            Routes.details,
+            extra: {
+              'coverUrl': thumbnailUrl ?? '',
+              'description': description ?? '説明がありません',
+              'author': author,
+              'title': title,
+            },
+          ),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
@@ -89,16 +99,6 @@ class SavedScreenTile extends StatelessWidget {
                           fontSize: 14,
                         ),
                       ),
-                      if (publicationDate != null) ...[
-                        const Gap(2),
-                        Text(
-                          publicationDate!,
-                          style: TextStyle(
-                            color: theme.colorScheme.onSurfaceVariant,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ],
                     ],
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:book_app/data/entity/book/entity.dart';
+import 'package:book_app/data/entity/openbd/openbd_response.dart';
 import 'package:book_app/instance/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod/riverpod.dart';
@@ -31,11 +32,15 @@ class BookApi {
     );
 
     // ISBNまたはthumbnailUrlがnullのものを除外
+    print(entities);
     return entities
         .whereType<BookEntity>()
-        .where((e) => e.isbn != null &&
-                     e.thumbnailUrl != null &&
-                     e.thumbnailUrl!.isNotEmpty)
+        .where(
+          (e) =>
+              e.isbn != null &&
+              e.thumbnailUrl != null &&
+              e.thumbnailUrl!.isNotEmpty,
+        )
         .toList();
   }
 
@@ -94,27 +99,32 @@ class BookApi {
     final title = getBadgerfishValue(item['title']);
     final author = getBadgerfishValue(item['dc:creator']);
     final date = getBadgerfishValue(item['dcterms:issued']);
-    final description = getBadgerfishValue(item['description']);
 
     // dc:identifierからISBNを抽出
     final identifier = _extractIdentifierFromItem(item);
 
-    // 書影URLを取得（OpenBD APIとNDLの両方を試す）
-    String? thumbnailUrl;
+    // OpenBD APIから説明文を取得
+    String? description;
     if (identifier != null) {
-      // まずOpenBD APIから取得を試みる
-      thumbnailUrl = await _fetchCoverUrlFromOpenBD(identifier);
-
-      // OpenBDで取得できなかった場合、NDLのサムネイルURLを確認
-      if (thumbnailUrl == null) {
-        final ndlUrl = 'https://ndlsearch.ndl.go.jp/thumbnail/$identifier.jpg';
-        final isValid = await _isValidImageUrl(ndlUrl);
-        if (isValid) {
-          thumbnailUrl = ndlUrl;
-        }
-      }
+      description = await _fetchDescriptionFromOpenBD(identifier);
     }
 
+    // 書影URLを取得（NDLを優先、なければOpenBD APIを試す）
+    String? thumbnailUrl;
+    if (identifier != null) {
+      // まずNDLのサムネイルURLを確認
+      final ndlUrl = 'https://ndlsearch.ndl.go.jp/thumbnail/$identifier.jpg';
+      final isValid = await _isValidImageUrl(ndlUrl);
+      if (isValid) {
+        thumbnailUrl = ndlUrl;
+      }
+
+      // NDLで取得できなかった場合、OpenBD APIから取得を試みる
+      if (thumbnailUrl == null) {
+        thumbnailUrl = await _fetchCoverUrlFromOpenBD(identifier);
+      }
+    }
+    print(description);
     return BookEntity(
       title: title.isNotEmpty ? title : 'No Title',
       author: author.isNotEmpty ? author : 'Unknown Author',
@@ -125,7 +135,7 @@ class BookApi {
     );
   }
 
-  Future<String?> _fetchCoverUrlFromOpenBD(String isbn) async {
+  Future<OpenBDResponse?> _fetchFromOpenBD(String isbn) async {
     try {
       final openBdClient = ApiClient(
         dio: Dio(
@@ -139,19 +149,42 @@ class BookApi {
 
       final response = await openBdClient.get('/v1/get', query: {'isbn': isbn});
       if (response is List && response.isNotEmpty && response[0] != null) {
-        final bookData = response[0] as Map<String, dynamic>?;
-        final summary = bookData?['summary'] as Map<String, dynamic>?;
-        final coverUrl = summary?['cover'] as String?;
-
-        // coverUrlが有効な場合のみ返す
-        if (coverUrl != null && coverUrl.isNotEmpty) {
-          return coverUrl;
-        }
+        final bookData = response[0] as Map<String, dynamic>;
+        return OpenBDResponse.fromJson(bookData);
       }
     } catch (e) {
-      // エラー時はnullを返してNDLのフォールバックを使う
+      // エラー時はnullを返す
     }
     return null;
+  }
+
+  Future<String?> _fetchCoverUrlFromOpenBD(String isbn) async {
+    final data = await _fetchFromOpenBD(isbn);
+    return data?.summary?.cover;
+  }
+
+  Future<String?> _fetchDescriptionFromOpenBD(String isbn) async {
+    final data = await _fetchFromOpenBD(isbn);
+    if (data == null) return null;
+
+    // 優先順位: onix.CollateralDetail.TextContent > hanmoto.maegakinado
+    final textContents = data.onix?.CollateralDetail?.TextContent;
+    if (textContents != null && textContents.isNotEmpty) {
+      // 最も長い説明文を選択
+      String? longestText;
+      int maxLength = 0;
+      for (final content in textContents) {
+        final text = content.Text;
+        if (text != null && text.length > maxLength) {
+          longestText = text;
+          maxLength = text.length;
+        }
+      }
+      if (longestText != null) return longestText;
+    }
+
+    // フォールバック: hanmoto.maegakinado
+    return data.hanmoto?.maegakinado;
   }
 
   Future<bool> _isValidImageUrl(String url) async {

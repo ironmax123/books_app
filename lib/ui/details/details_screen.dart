@@ -8,7 +8,9 @@ class DetailsScreen extends StatelessWidget {
     required this.coverUrl,
     required this.description,
     required this.author,
+    required this.title,
   });
+  final String title;
   final String coverUrl;
   final String description;
   final String author;
@@ -16,7 +18,10 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Details')),
+      appBar: AppBar(
+        title: Text(title),
+        backgroundColor: Theme.of(context).colorScheme.secondaryFixed,
+      ),
       body: ListView(
         children: [
           DetailsScreenCard(
