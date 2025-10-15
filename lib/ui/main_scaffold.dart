@@ -25,10 +25,10 @@ class MainScaffold extends StatelessWidget {
                 child: Container(
                   height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(
-                      color: Colors.white.withOpacity(0.3),
+                      color: Colors.white.withOpacity(0.4),
                       width: 1.5,
                     ),
                     boxShadow: [
