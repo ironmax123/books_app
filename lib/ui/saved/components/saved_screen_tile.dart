@@ -12,6 +12,8 @@ class SavedScreenTile extends StatelessWidget {
     this.description,
     this.publicationDate,
     this.onDelete,
+    this.onTap,
+    required this.isWide,
   });
   final String title;
   final String author;
@@ -19,10 +21,13 @@ class SavedScreenTile extends StatelessWidget {
   final String? description;
   final String? publicationDate;
   final VoidCallback? onDelete;
+  final VoidCallback? onTap;
+  final bool isWide;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Material(
@@ -31,15 +36,17 @@ class SavedScreenTile extends StatelessWidget {
         shadowColor: Colors.black26,
         borderRadius: BorderRadius.circular(24),
         child: InkWell(
-          onTap: () => context.push(
-            Routes.details,
-            extra: {
-              'coverUrl': thumbnailUrl ?? '',
-              'description': description ?? '説明がありません',
-              'author': author,
-              'title': title,
-            },
-          ),
+          onTap: isWide
+              ? onTap
+              : () => context.push(
+                  Routes.details,
+                  extra: {
+                    'coverUrl': thumbnailUrl ?? '',
+                    'description': description ?? '説明がありません',
+                    'author': author,
+                    'title': title,
+                  },
+                ),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),

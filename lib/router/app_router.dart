@@ -1,6 +1,6 @@
 import 'package:book_app/ui/home/home_screen.dart';
 import 'package:book_app/ui/main_scaffold.dart';
-import 'package:book_app/ui/saved/saved_screen.dart';
+import 'package:book_app/ui/saved/saved_adaptive_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../ui/details/details_screen.dart';
@@ -27,7 +27,8 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/saved',
               name: 'saved',
-              builder: (context, state) => const SavedScreen(),
+              builder: (context, state) =>
+                  const SavedAdaptiveScreenAdaptiveScreen(),
             ),
           ],
         ),

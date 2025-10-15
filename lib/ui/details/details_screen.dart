@@ -1,4 +1,4 @@
-import 'package:book_app/ui/details/components/details_screen_card.dart';
+import 'package:book_app/ui/details/components/details_screen_body.dart';
 import 'package:flutter/material.dart';
 import 'package:m3_expressive_flutter/m3_expressive_flutter.dart';
 
@@ -22,14 +22,11 @@ class DetailsScreen extends StatelessWidget {
         title: Text(title),
         backgroundColor: Theme.of(context).colorScheme.secondaryFixed,
       ),
-      body: ListView(
-        children: [
-          DetailsScreenCard(
-            coverUrl: coverUrl,
-            description: description,
-            author: author,
-          ),
-        ],
+      body: DetailsScreenBody(
+        coverUrl: coverUrl,
+        description: description,
+        author: author,
+        title: title,
       ),
       floatingActionButton: M3eFab.regular(
         color: Theme.of(context).colorScheme.outline,
