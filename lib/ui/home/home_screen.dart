@@ -3,9 +3,11 @@ import 'package:book_app/ui/home/components/home_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:m3_expressive_flutter/m3_expressive_flutter.dart';
 
+import '../../router/app_router.dart';
 import 'components/home_button.dart';
 import 'view_model/home_view_model.dart';
 
@@ -62,9 +64,9 @@ class HomeScreen extends HookConsumerWidget {
         backgroundColor: cs.secondary,
         actions: [
           IconButton(
-            icon: const Icon(Icons.bookmark_outline),
-            tooltip: 'Saved',
-            onPressed: () {},
+            icon: const Icon(Icons.bookmark_added_rounded, size: 32),
+            tooltip: '保存一覧',
+            onPressed: () => context.push(Routes.saved),
           ),
         ],
       ),
