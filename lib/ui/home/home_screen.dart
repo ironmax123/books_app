@@ -133,7 +133,7 @@ class HomeScreen extends HookConsumerWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 140),
+            padding: const EdgeInsets.only(bottom: 110),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

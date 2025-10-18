@@ -27,8 +27,7 @@ final appRouter = GoRouter(
             GoRoute(
               path: '/saved',
               name: 'saved',
-              builder: (context, state) =>
-                  const SavedAdaptiveScreenAdaptiveScreen(),
+              builder: (context, state) => const SavedAdaptiveScreen(),
             ),
           ],
         ),

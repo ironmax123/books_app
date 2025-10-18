@@ -6,8 +6,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../provider/fold/provider.dart';
 import '../fold/fold_screen.dart';
 
-class SavedAdaptiveScreenAdaptiveScreen extends HookConsumerWidget {
-  const SavedAdaptiveScreenAdaptiveScreen({super.key});
+class SavedAdaptiveScreen extends HookConsumerWidget {
+  const SavedAdaptiveScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

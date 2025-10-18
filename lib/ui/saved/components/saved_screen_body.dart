@@ -13,7 +13,8 @@ class SavedScreenBody extends HookConsumerWidget {
     required String author,
     required String coverUrl,
     required String description,
-  })? onBookSelected;
+  })?
+  onBookSelected;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,6 +35,7 @@ class SavedScreenBody extends HookConsumerWidget {
             child: Text('保存された本がありません', style: TextStyle(fontSize: 16)),
           )
         : ListView.builder(
+            padding: const EdgeInsets.only(bottom: 99),
             itemCount: state.savedBooks.length,
             itemBuilder: (context, index) {
               final book = state.savedBooks[index];

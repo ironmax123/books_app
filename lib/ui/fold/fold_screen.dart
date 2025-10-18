@@ -20,19 +20,20 @@ class FoldScreen extends HookConsumerWidget {
         children: [
           Expanded(
             child: SavedScreenBody(
-              onBookSelected: ({
-                required String title,
-                required String author,
-                required String coverUrl,
-                required String description,
-              }) {
-                selectedBook.value = {
-                  'title': title,
-                  'author': author,
-                  'coverUrl': coverUrl,
-                  'description': description,
-                };
-              },
+              onBookSelected:
+                  ({
+                    required String title,
+                    required String author,
+                    required String coverUrl,
+                    required String description,
+                  }) {
+                    selectedBook.value = {
+                      'title': title,
+                      'author': author,
+                      'coverUrl': coverUrl,
+                      'description': description,
+                    };
+                  },
             ),
           ),
           Expanded(

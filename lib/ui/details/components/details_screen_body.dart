@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 import 'details_screen_card.dart';
 
@@ -24,6 +25,7 @@ class DetailsScreenBody extends StatelessWidget {
           description: description,
           author: author,
         ),
+        const Gap(32),
       ],
     );
   }
