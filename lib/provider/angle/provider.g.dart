@@ -6,20 +6,19 @@ part of 'provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$deviceWidthHash() => r'ec7bd76a7e260bce665f4f4953c9bb6a46abc557';
+String _$angleHash() => r'a7d46ef7a22ce6228c2d7d20ffe5bad669274fa9';
 
-/// See also [DeviceWidth].
-@ProviderFor(DeviceWidth)
-final deviceWidthProvider =
-    AutoDisposeNotifierProvider<DeviceWidth, bool>.internal(
-  DeviceWidth.new,
-  name: r'deviceWidthProvider',
+/// See also [Angle].
+@ProviderFor(Angle)
+final angleProvider = AutoDisposeStreamNotifierProvider<Angle, double>.internal(
+  Angle.new,
+  name: r'angleProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$deviceWidthHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$angleHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$DeviceWidth = AutoDisposeNotifier<bool>;
+typedef _$Angle = AutoDisposeStreamNotifier<double>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -1,6 +1,7 @@
 import 'package:book_app/ui/home/home_screen.dart';
 import 'package:book_app/ui/main_scaffold.dart';
 import 'package:book_app/ui/saved/saved_adaptive_screen.dart';
+import 'package:book_app/ui/video/adaptive_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../ui/details/details_screen.dart';
@@ -46,6 +47,11 @@ final appRouter = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: '/video',
+      name: 'video',
+      builder: (context, state) => const VideoAdaptiveScreen(),
+    ),
   ],
 );
 
@@ -54,4 +60,5 @@ class Routes {
   static const home = '/home';
   static const saved = '/saved';
   static const details = '/details';
+  static const video = '/video';
 }

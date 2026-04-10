@@ -1,8 +1,10 @@
 import 'package:book_app/data/entity/book/entity.dart';
+import 'package:book_app/router/app_router.dart';
 import 'package:book_app/ui/home/components/home_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'components/home_button.dart';
@@ -36,6 +38,14 @@ class HomeScreen extends HookConsumerWidget {
       appBar: AppBar(
         title: const Text('ホーム'),
         backgroundColor: cs.secondaryFixed,
+        actions: [
+          IconButton(
+            onPressed: () {
+              context.push(Routes.video);
+            },
+            icon: const Icon(Icons.video_library),
+          ),
+        ],
       ),
       body: Column(
         children: [

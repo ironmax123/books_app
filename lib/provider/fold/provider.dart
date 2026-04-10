@@ -12,8 +12,4 @@ class DeviceWidth extends _$DeviceWidth {
   void updateScreen(double width) {
     state = width >= 600;
   }
-
-  void updateBottomNavigation(double width) {
-    state = width >= 840;
-  }
 }
