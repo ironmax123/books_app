@@ -14,7 +14,11 @@ class VideoFlexibleScreen extends HookConsumerWidget {
           children: [
             Expanded(child: VideoScreen()),
             Expanded(
-              child: Container(width: double.infinity, color: Colors.grey, child: PlayButtons()),
+              child: Container(
+                width: double.infinity,
+                color: Colors.black87,
+                child: Center(child: PlayButtons()),
+              ),
             ),
           ],
         ),

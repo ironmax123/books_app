@@ -57,4 +57,7 @@ class VideoViewModel extends _$VideoViewModel {
 
   /// 再生中かどうか
   bool get isPlaying => _controller?.value.isPlaying ?? false;
+
+  /// コントローラーの参照（ListenableBuilder用）
+  VideoPlayerController? get controller => _controller;
 }

@@ -18,7 +18,7 @@ class VideoScreen extends HookConsumerWidget {
     final timerRef = useRef<Timer?>(null);
 
     final controller = useMemoized(
-      () => VideoPlayerController.asset("assets/video/20251113_002951286.mp4"),
+      () => VideoPlayerController.asset("assets/video/20250815_134014970.mp4"),
       [],
     );
 

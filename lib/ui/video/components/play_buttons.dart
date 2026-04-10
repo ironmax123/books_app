@@ -9,7 +9,6 @@ class PlayButtons extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.read(videoViewModelProvider.notifier);
-    final isPlaying = viewModel.isPlaying;
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -36,10 +35,15 @@ class PlayButtons extends ConsumerWidget {
               color: Colors.white,
               borderRadius: BorderRadius.circular(999),
             ),
-            child: Icon(
-              isPlaying ? Icons.pause : Icons.play_arrow,
-              size: 32,
-            ),
+            child: viewModel.controller != null
+                ? ListenableBuilder(
+                    listenable: viewModel.controller!,
+                    builder: (context, _) => Icon(
+                      viewModel.isPlaying ? Icons.pause : Icons.play_arrow,
+                      size: 32,
+                    ),
+                  )
+                : Icon(Icons.play_arrow, size: 32),
           ),
         ),
         const Gap(16),
